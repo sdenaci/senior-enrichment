@@ -1,11 +1,24 @@
 import React, { Component } from 'react';
+import { Route, Switch, Link } from 'react-router-dom';
+import Campuses from './allCampuses'
+import Students from './allStudents'
+import Home from './Home'
 
 function Header() {
   return (
   <div>
-  <h1>Interplanetary Academy</h1>
-  <h2>Campuses</h2>
-  <h2>Students</h2>
+    <h1>Welcome to Interplanetary Academy</h1>
+
+      <ul className="nav nav-tabs">
+        <li><Link to="/campuses">Campuses</Link></li>
+        <li><Link to="/students">Students</Link></li>
+        <li><Link to="/home">Home</Link></li>
+      </ul>
+      <Switch>
+        <Route path="/campuses" component={Campuses}/>
+        <Route path="/students" component={Students}/>
+        <Route path="/home" component={Home}/>
+      </Switch>
   </div>
   )
 }

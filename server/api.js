@@ -25,13 +25,13 @@ api.param('/campuses/campusId', (req, res, next, id) => {
   .catch(next);
 })
 
-api.get('/users', (req, res, next) => {
+api.get('/students', (req, res, next) => {
   User.findAll({})
     .then(users => res.json(users))
     .catch(next)
 })
 
-api.param('/users/userId', (req, res, next, id) => {
+api.param('/students/studentId', (req, res, next, id) => {
   User.findById(id)
     .then(user => {
       req.user = user;
@@ -47,7 +47,7 @@ api.post('/campuses', (req, res, next) => {
     .catch(next)
 })
 
-api.post('/users', (req, res, next) => {
+api.post('/students', (req, res, next) => {
   User.create(req.body)
     .then(user => res.status(201).json(user))
     .catch(next)
@@ -59,7 +59,7 @@ api.put('campuses/:campusId', (req, res, next) => {
     .catch(next);
 })
 
-api.put('users/:userId', (req, res, next) => {
+api.put('students/:studentId', (req, res, next) => {
   req.user.update(req.body)
     .then(user => res.status(200).json(user))
     .catch(next);
@@ -78,14 +78,14 @@ api.get('campuses/:campusId/delete', (req, res, next) => {
 
 });
 
-api.get('users/:userId/delete', (req, res, next) => {
+api.get('students/:studentId/delete', (req, res, next) => {
     User.destroy({
             where: {
-                id: req.params.userId
+                id: req.params.studentId
             }
         })
         .then(function () {
-            res.redirect('/users');
+            res.redirect('/students');
         })
         .catch(next);
 
