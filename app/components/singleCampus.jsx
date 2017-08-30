@@ -1,10 +1,18 @@
 import React from 'react'
+import {connect} from 'react-redux'
 
 
-function SingleCampus() {
+function SingleCampus(props) {
   return (
-    <h1> U R AT A SINGLE CAMPUS</h1>
+    <div>
+      <h1> U R AT A SINGLE CAMPUS</h1>
+      <h2>{props.currentCampus.name}</h2>
+    </div>
   )
 }
 
-export default SingleCampus
+
+const mapStateToProps = (state) => ({currentCampus: state.currentCampus})
+
+
+export default connect(mapStateToProps)(SingleCampus)

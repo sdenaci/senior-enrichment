@@ -32,3 +32,4 @@ export const fetchCampuses = () => dispatch => {
     })
     .catch(err => console.error('Fetching campuses unsuccessful', err));
 };
+
