@@ -9,7 +9,7 @@ const allCampuses = (props) => {
       <ul>
         {props.campuses.map(campus => (
         <li key={campus.id}>{campus.name}
-        <Link to={`campuses/${campus.id}`}>
+        <Link to={`/campuses/${campus.id}`}>
         <img src={campus.image} />
         </Link>
 
