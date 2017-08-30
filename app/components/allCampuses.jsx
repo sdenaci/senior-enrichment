@@ -7,9 +7,14 @@ const allCampuses = (props) => {
     <div>
       <h2> Campuses </h2>
       <ul>
-      {props.campuses.length > 0 ? props.campuses.map(campus => (
-        <li key={campus.id}>{campus.name} <img src={campus.image} /> </li>
-        )) : <h1>no campuses here, u nerdo</h1>}
+        {props.campuses.map(campus => (
+        <li key={campus.id}>{campus.name}
+        <Link to={`campuses/${campus.id}`}>
+        <img src={campus.image} />
+        </Link>
+
+        </li>
+        ))}
       </ul>
     </div>
   )

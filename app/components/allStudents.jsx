@@ -7,9 +7,9 @@ const allStudents = (props) => {
     <div>
       <h2> Students </h2>
       <ul>
-      {props.students.length ? props.students.map(student => (
-        <li key={student.id}>{student.name}</li>)) :
-        <h1>no students here, u nerdo</h1>}
+        {props.students.map(student => (
+        <li key={student.id}>{student.name}</li>
+        ))}
       </ul>
     </div>
   )

@@ -4,9 +4,10 @@ import { Router } from 'react-router';
 import { Route, Switch } from 'react-router-dom';
 import history from './history'
 import Root from './Root'
-import allCampuses from './allCampuses'
+import Campuses from './allCampuses'
 import {fetchCampuses} from '../redux/campuses'
 import {fetchStudents} from '../redux/students'
+import Home from './Home'
 
 class Routes extends Component {
 
@@ -14,21 +15,19 @@ class Routes extends Component {
     this.props.fetchInitialData();
   }
 
-  render() {
-
-    return(
+  render () {
+    return (
       <Router history={history}>
         <Root>
           <Switch>
-            <Route exact path="/" component={allCampuses}/>
-
+            <Route exact path="/" component={Home} />
+            <Route component={Home} />
           </Switch>
         </Root>
       </Router>
-    )
+    );
   }
 }
-
 
 const mapStateToProps = null;
 
