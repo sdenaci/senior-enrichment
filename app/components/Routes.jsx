@@ -9,6 +9,8 @@ import {fetchStudents} from '../redux/students'
 import Campuses from './allCampuses'
 import Students from './allStudents'
 import Home from './Home'
+import SingleCampus from './singleCampus'
+import SingleStudent from './singleStudent'
 
 class Routes extends Component {
 
@@ -19,15 +21,7 @@ class Routes extends Component {
   render () {
     return (
       <Router history={history}>
-        <Root>
-          <Switch>
-            <Route exact path='/' component={Home}/>
-            <Route path="/campuses" component={Campuses}/>
-            <Route path="/students" component={Students}/>
-            <Route path="/home" component={Home}/>
-            <Route component={Home}/>
-          </Switch>
-        </Root>
+        <Root/>
       </Router>
     );
   }

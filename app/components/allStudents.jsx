@@ -8,7 +8,11 @@ const allStudents = (props) => {
       <h2> Students </h2>
       <ul>
         {props.students.map(student => (
-        <li key={student.id}>{student.name}</li>
+        <li key={student.id}>
+        <Link to={`students/${student.id}`}>
+        {student.name}
+        </Link>
+        </li>
         ))}
       </ul>
     </div>
