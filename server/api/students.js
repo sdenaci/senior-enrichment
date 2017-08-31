@@ -21,6 +21,7 @@ api.get('/:studentId', function(req, res, next){
 })
 
 api.post('/', (req, res, next) => {
+  console.log('uve arrived')
   User.create(req.body)
     .then(user => res.status(201).json(user))
     .catch(next)
@@ -28,20 +29,27 @@ api.post('/', (req, res, next) => {
 
 
 
-api.put('/:studentId/edit', (req, res, next) => {
-  req.user.update(req.body)
-    .then(user => res.status(200).json(user))
-    .catch(next);
+api.put('/:studentId/', (req, res, next) => {
+  User.update(req.body, {
+    where: {
+      id: req.params.studentId
+    }
+  })
+  .then(() => res.send('successful'))
 })
 
-api.get('/:studentId/delete', (req, res, next) => {
-    User.destroy({
+api.delete('/:studentId/delete', (req, res, next) => {
+    User.findOne({
             where: {
                 id: req.params.studentId
             }
-        })
-        .then(function () {
-            res.redirect('/students');
+        }).then((result) => {
+          return User.destroy({
+            where: {
+              id: req.params.studentId
+            }
+          })
+          .then((u) => {res.send(result)})
         })
         .catch(next);
 

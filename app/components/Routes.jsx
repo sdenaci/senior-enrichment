@@ -14,7 +14,7 @@ import SingleStudent from './singleStudent'
 
 class Routes extends Component {
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.fetchInitialData();
   }
 

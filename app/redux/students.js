@@ -1,11 +1,19 @@
 import axios from 'axios'
+import history from '../components/history'
 
 //action types
 const INITIALIZE = 'INITIALIZE_STUDENTS'
+const CREATE = 'CREATE_STUDENT'
+const UPDATE = 'UPDATE_STUDENT'
+const DELETE = 'DELETE_STUDENT'
 
 
 //action creators
 const init = students => ({type: INITIALIZE, students})
+const createANewStudent = student => ({type: CREATE, student})
+const updateAStudent = student => ({type: UPDATE, student})
+const deleteAStudent = student => ({type: DELETE, student})
+
 
 
 
@@ -17,6 +25,15 @@ export default function reducer (students = [], action) {
 
     case INITIALIZE:
       return action.students;
+
+    case CREATE:
+      return [...students, action.student]
+
+    case UPDATE:
+      return [...students, action.student]
+
+    case DELETE:
+      return students.filter(student => student.id !== action.student.id)
     default:
       return students
   }
@@ -34,8 +51,24 @@ export const fetchStudents = () => dispatch => {
 };
 
 export const createStudent = (info) => dispatch => {
-  console.log('info ', info)
   axios.post('/api/students/', info)
     .then(res => res.data)
-    .then(student => console.log(student))
+    .then(newStudent => {
+      const action = createANewStudent(newStudent)
+      dispatch(action);
+    })
+}
+
+export const updateStudent = (info, studentId) => dispatch => {
+  axios.put(`/api/students/${studentId}`, info)
+    .then(res => history.push(`/students/${studentId}`))
+}
+
+export const deleteStudent = (studentId) => dispatch => {
+  axios.delete(`api/students/${studentId}/delete`)
+  .then(res => (res.data))
+  .then(student => {
+    const deleteAction = deleteAStudent(student)
+    dispatch(deleteAction)
+  })
 }

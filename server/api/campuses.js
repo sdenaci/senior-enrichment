@@ -22,9 +22,12 @@ api.post('/', (req, res, next) => {
     .catch(next)
 })
 api.put('/:campusId', (req, res, next) => {
-  req.campus.update(req.body)
-    .then(campus => res.status(200).json(campus))
-    .catch(next);
+  Campus.update(req.body, {
+    where: {
+      id: req.params.campusId
+    }
+  })
+  .then(() => res.send('successful'))
 })
 
 api.get('/:campusId/delete', (req, res, next) => {
