@@ -2,6 +2,7 @@
 const api = require('express').Router()
 const db = require('../../db')
 const User = db.model('user')
+const Campus = db.model('campus')
 
 
 api.get('/', (req, res, next) => {
@@ -11,10 +12,14 @@ api.get('/', (req, res, next) => {
 })
 
 api.get('/:studentId', function(req, res, next){
-  User.findById(req.params.studentId)
+  User.findOne({
+    where: {id: req.params.studentId},
+    include: [Campus]
+  })
     .then(student => res.send(student))
-  .catch(next);
+    .catch(next);
 })
+
 api.post('/', (req, res, next) => {
   User.create(req.body)
     .then(user => res.status(201).json(user))

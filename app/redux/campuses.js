@@ -33,3 +33,10 @@ export const fetchCampuses = () => dispatch => {
     .catch(err => console.error('Fetching campuses unsuccessful', err));
 };
 
+export const createCampus = (info) => dispatch => {
+  axios.post('/api/campuses/', info)
+    .then(res => res.data)
+    .then(campus => console.log(campus))
+}
+
+

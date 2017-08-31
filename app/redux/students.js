@@ -32,3 +32,10 @@ export const fetchStudents = () => dispatch => {
     })
     .catch(err => console.error('Fetching students unsuccessful', err));
 };
+
+export const createStudent = (info) => dispatch => {
+  console.log('info ', info)
+  axios.post('/api/students/', info)
+    .then(res => res.data)
+    .then(student => console.log(student))
+}
