@@ -29,7 +29,6 @@ class SingleCampus extends Component {
   const campusStudents = this.props.students.filter(student => (
     student.campusId === campus.id
   ))
-  console.log(campusStudents)
   return (
 
     <div>
@@ -42,6 +41,9 @@ class SingleCampus extends Component {
         <li >{student.name}</li>
         </Link>
         ))}
+      <Link to={`/campuses/${campus.id}/edit`}>
+      <button>Edit stuff bout dis campus</button>
+      </Link>
       </ul>
     </div>
   )

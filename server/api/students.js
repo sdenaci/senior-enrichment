@@ -28,7 +28,7 @@ api.post('/', (req, res, next) => {
 
 
 
-api.put('/:studentId', (req, res, next) => {
+api.put('/:studentId/edit', (req, res, next) => {
   req.user.update(req.body)
     .then(user => res.status(200).json(user))
     .catch(next);

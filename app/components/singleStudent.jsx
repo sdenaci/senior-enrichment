@@ -38,6 +38,9 @@ class SingleStudent extends Component {
         {campusObj.name}
         </h3>
         </Link>: null}
+      <Link to={`/students/${student.id}/edit`}>
+      <button>Edit stuff bout dis student</button>
+      </Link>
 
     </div>
   )

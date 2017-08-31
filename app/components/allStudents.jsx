@@ -16,7 +16,7 @@ const allStudents = (props) => {
       <ul>
         {props.students.map(student => (
         <li key={student.id}>
-        <Link to={`students/${student.id}`}>
+        <Link to={`/students/${student.id}`}>
         {student.name}
         </Link>
         </li>

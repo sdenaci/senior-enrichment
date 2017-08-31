@@ -6,6 +6,8 @@ import Students from './allStudents'
 import Home from './Home'
 import SingleCampus from './singleCampus'
 import SingleStudent from './singleStudent'
+import EditStudent from './EditStudent'
+import EditCampus from './EditCampus'
 
 
 const Root = ({children}) => (
@@ -15,8 +17,10 @@ const Root = ({children}) => (
       <Switch>
         <Route exact path='/' component={Home}/>
         <Route exact path="/campuses" component={Campuses}/>
-        <Route path="/campuses/:campusId" component={SingleCampus}/>
-        <Route path="/students/:studentId" component={SingleStudent}/>
+        <Route exact path="/campuses/:campusId" component={SingleCampus}/>
+        <Route exact path="/students/:studentId" component={SingleStudent}/>
+        <Route exact path="/students/:studentId/edit" component={EditStudent}/>
+        <Route path="/campuses/:campusId/edit" component={EditCampus}/>
         <Route exact path="/students" component={Students}/>
         <Route path="/home" component={Home}/>
         <Route component={Home}/>
