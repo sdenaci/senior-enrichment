@@ -21,7 +21,6 @@ api.get('/:studentId', function(req, res, next){
 })
 
 api.post('/', (req, res, next) => {
-  console.log('uve arrived')
   User.create(req.body)
     .then(user => res.status(201).json(user))
     .catch(next)

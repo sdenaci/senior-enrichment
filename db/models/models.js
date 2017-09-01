@@ -22,7 +22,7 @@ var Campus = db.define('campus', {
   },
   image: {
     type: Sequelize.STRING,
-    isUrl: true
+    isUrl: true,
   }
 })
 

@@ -10,12 +10,14 @@ function allStudents(props) {
     return(
 
       <div>
-      {console.log(props)}
+
         <h2> Students </h2>
         <form onSubmit={props.onStudentSubmit}>
           Name: <input name="name" type="text"/>
           Email: <input name="email" type="text"/>
-          Campus: <input name="campus" type="text"/>
+          Campus: <select name="campus">
+                    {props.campuses && props.campuses.map(campus => <option key={campus.id} value={campus.id}>{campus.name} </option>)}
+                  </select>
           <button>Add Student</button>
         </form>
         <ul>
@@ -33,7 +35,7 @@ function allStudents(props) {
   }
 
 
-const mapStateToProps = (state) => ({students: state.students})
+const mapStateToProps = (state) => ({students: state.students, campuses: state.campuses})
 const mapDispatchToProps = (dispatch) => ({
 
   onStudentSubmit(event) {
