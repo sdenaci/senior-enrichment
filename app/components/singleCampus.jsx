@@ -32,7 +32,7 @@ class SingleCampus extends Component {
   return (
 
     <div>
-      <h1> U R AT A SINGLE CAMPUS</h1>
+      <h1> U R AT DA SINGLE CAMPUS PAGE 4</h1>
       <h2>{campus.name}</h2>
       <h3>students at dis camperino</h3>
       <ul>

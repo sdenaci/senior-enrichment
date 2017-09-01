@@ -6,6 +6,7 @@ const INITIALIZE = 'INITIALIZE_STUDENTS'
 const CREATE = 'CREATE_STUDENT'
 const UPDATE = 'UPDATE_STUDENT'
 const DELETE = 'DELETE_STUDENT'
+const DELETE_MULT = 'DELETE_MULTIPLE_STUDENTS'
 
 
 //action creators
@@ -13,6 +14,7 @@ const init = students => ({type: INITIALIZE, students})
 const createANewStudent = student => ({type: CREATE, student})
 const updateAStudent = student => ({type: UPDATE, student})
 const deleteAStudent = student => ({type: DELETE, student})
+export const deleteStudents = campusId => ({type: DELETE_MULT, campusId})
 
 
 
@@ -34,6 +36,11 @@ export default function reducer (students = [], action) {
 
     case DELETE:
       return students.filter(student => student.id !== action.student.id)
+
+    case DELETE_MULT:
+      console.log('in reducer', action.campusId)
+      console.log(students.map(student=>student.campusId))
+      return students.filter(student => +student.campusId !== +action.campusId)
 
     default:
       return students

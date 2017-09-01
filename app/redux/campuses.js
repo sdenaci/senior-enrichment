@@ -1,5 +1,6 @@
 import axios from 'axios'
 import history from '../components/history'
+import {deleteStudents} from './students'
 //action types
 const INITIALIZE = 'INITIALIZE_CAMPUSES'
 const CREATE = 'CREATE_CAMPUS'
@@ -69,6 +70,7 @@ export const createCampus = (info) => dispatch => {
     .then(campus => {
       const deleteAction = deleteACampus(campus)
       dispatch(deleteAction)
+      dispatch(deleteStudents(campusId))
     })
   }
 

@@ -13,7 +13,7 @@ import EditCampus from './EditCampus'
 const Root = ({children}) => (
   <div>
     <Navbar/>
-    <h1>Welcome to Interplanetary Academy</h1>
+    <h1>¡¡¡¡¡Welcome to Interplanetary Academy!!!!</h1>
       <Switch>
         <Route exact path='/' component={Home}/>
         <Route exact path="/campuses" component={Campuses}/>

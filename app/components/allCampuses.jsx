@@ -14,16 +14,15 @@ function allCampuses(props) {
           Image: <input name="image" type="text"/>
           <button>Add Campus</button>
         </form>
-          <ul>
+
           {props.campuses.map(campus => (
           <Link to={`/campuses/${campus.id}`} key={campus.id}>
-          <li >{campus.name}
+          <h1>{campus.name} </h1>
           <img src={campus.image} id={campus.id}/>
           <button onClick={props.deleteMe} name={campus.id}>delete me if u wanna</button>
-          </li>
           </Link>
           ))}
-        </ul>
+
       </div>
     )
   }
@@ -46,7 +45,6 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   },
   deleteMe(event) {
     event.preventDefault()
-    console.log(event.target.value)
     dispatch(deleteCampus(event.target.name))
 
   }

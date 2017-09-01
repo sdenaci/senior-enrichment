@@ -35,7 +35,10 @@ class SingleStudent extends Component {
       {campusObj ?
         <Link to={`/campuses/${campusObj.id}`} >
         <h3>
-        {campusObj.name}
+        goes to {campusObj.name}
+        </h3>
+        <h3>
+        can be emailed at {student.email}
         </h3>
         </Link>: null}
       <Link to={`/students/${student.id}/edit`}>
