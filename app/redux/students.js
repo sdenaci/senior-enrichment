@@ -1,5 +1,6 @@
 import axios from 'axios'
 import history from '../components/history'
+import updateCurrent from './currentStudent'
 
 //action types
 const INITIALIZE = 'INITIALIZE_STUDENTS'
@@ -32,14 +33,13 @@ export default function reducer (students = [], action) {
       return [...students, action.student]
 
     case UPDATE:
-      return [...students, action.student]
+      const filtered = students.filter(student => student.id !== action.student.id)
+      return [...filtered, action.student]
 
     case DELETE:
       return students.filter(student => student.id !== action.student.id)
 
     case DELETE_MULT:
-      console.log('in reducer', action.campusId)
-      console.log(students.map(student=>student.campusId))
       return students.filter(student => +student.campusId !== +action.campusId)
 
     default:
@@ -69,7 +69,12 @@ export const createStudent = (info) => dispatch => {
 
 export const updateStudent = (info, studentId) => dispatch => {
   axios.put(`/api/students/${studentId}`, info)
-    .then(res => history.push(`/students/${studentId}`))
+    .then(res => res.data)
+    .then(updatedInfo => {
+      const updateAction = updateAStudent(updatedInfo)
+      dispatch(updateAction)
+
+    })
 }
 
 export const deleteStudent = (studentId) => dispatch => {

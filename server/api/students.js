@@ -34,7 +34,13 @@ api.put('/:studentId/', (req, res, next) => {
       id: req.params.studentId
     }
   })
-  .then(() => res.send('successful'))
+  .then((result) => {
+    return User.findOne({
+    where: {
+      id: req.params.studentId
+    }
+  })})
+  .then(user => res.send(user))
 })
 
 api.delete('/:studentId/delete', (req, res, next) => {

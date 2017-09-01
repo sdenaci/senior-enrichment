@@ -8,28 +8,29 @@ function allStudents(props) {
 
 
     return(
-
       <div>
-
-        <h2> Students </h2>
-        <form onSubmit={props.onStudentSubmit}>
-          Name: <input name="name" type="text"/>
-          Email: <input name="email" type="text"/>
-          Campus: <select name="campus">
-                    {props.campuses && props.campuses.map(campus => <option key={campus.id} value={campus.id}>{campus.name} </option>)}
-                  </select>
-          <button>Add Student</button>
-        </form>
-        <ul>
-          {props.students && props.students.map(student => (
-          <li key={student.id}>
-          <Link to={`/students/${student.id}`}>
-          {student.name}
-          </Link>
-          <button onClick={props.deleteMe} name={student.id}>delete me if u wanna</button>
-          </li>
-          ))}
-        </ul>
+      <h2> Students </h2>
+      <form onSubmit={props.onStudentSubmit}>
+        Name: <input name="name" type="text"/>
+        Email: <input name="email" type="text"/>
+        Campus: <select name="campus">
+                  {props.campuses && props.campuses.map(campus => <option key={campus.id} value={campus.id}>{campus.name} </option>)}
+                </select>
+        <button>Add Student</button>
+      </form>
+      <ul>
+        {props.students && props.students.map(student => (
+        <li key={student.id}>
+        <Link to={`/students/${student.id}`} onClick={props.currentStudent} value={student.id}>
+        {student.name}
+        <Link to={`/students/${student.id}`}>
+        <button>More info bout me</button>
+        </Link>
+        </Link>
+        <button onClick={props.deleteMe} name={student.id}>delete me if u wanna</button>
+        </li>
+        ))}
+      </ul>
       </div>
     )
   }
@@ -50,6 +51,11 @@ const mapDispatchToProps = (dispatch) => ({
   deleteMe(event) {
     event.preventDefault()
     dispatch(deleteStudent(event.target.name))
+  },
+  currentStudent(evt) {
+    const studentId = evt.target.value
+    console.log(studentId)
+    dispatch(fetchStudent(studentId))
   }
 
 
