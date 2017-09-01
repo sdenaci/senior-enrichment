@@ -34,6 +34,7 @@ export default function reducer (students = [], action) {
 
     case DELETE:
       return students.filter(student => student.id !== action.student.id)
+
     default:
       return students
   }

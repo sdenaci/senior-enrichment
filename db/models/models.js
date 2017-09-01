@@ -26,6 +26,10 @@ var Campus = db.define('campus', {
   }
 })
 
+Campus.hasMany(User, { onDelete: 'cascade', hooks: true });
+User.belongsTo(Campus);
+
+
 
 
 module.exports = {

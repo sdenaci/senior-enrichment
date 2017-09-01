@@ -3,12 +3,16 @@ import history from '../components/history'
 //action types
 const INITIALIZE = 'INITIALIZE_CAMPUSES'
 const CREATE = 'CREATE_CAMPUS'
+const UPDATE = 'UPDATE_CAMPUS'
+const DELETE = 'DELETE_CAMPUS'
 
 
 
 //action creators
 const init = campuses => ({type: INITIALIZE, campuses})
 const createANewCampus = campus => ({type: CREATE, campus})
+const updateACampus = campus => ({type: UPDATE, campus})
+const deleteACampus = campus => ({type: DELETE, campus})
 
 
 
@@ -22,7 +26,13 @@ export default function reducer (campuses = [], action) {
       return action.campuses;
 
     case CREATE:
-      return [...campuses, action.campus]
+      return [...campuses, action.campus];
+
+    case UPDATE:
+      return [...campuses, action.campus];
+
+    case DELETE:
+      return campuses.filter(campus => campus.id !== action.campus.id)
 
     default:
       return campuses
@@ -51,7 +61,15 @@ export const createCampus = (info) => dispatch => {
 
   export const updateCampus = (info, campusId) => dispatch => {
     axios.put(`/api/campuses/${campusId}`, info)
-      .then(history.push('/campuses'))
+      .then(res => history.push(`campuses/${campusId}`))
     }
+
+  export const deleteCampus = (campusId) => dispatch => {axios.delete(`api/campuses/${campusId}/delete`)
+    .then(res => (res.data))
+    .then(campus => {
+      const deleteAction = deleteACampus(campus)
+      dispatch(deleteAction)
+    })
+  }
 
 

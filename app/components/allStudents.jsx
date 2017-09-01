@@ -41,7 +41,7 @@ const mapDispatchToProps = (dispatch) => ({
     const newStudentInfo = {
       name: event.target.name.value,
       email: event.target.email.value,
-      campus: event.target.campus.value
+      campusId: event.target.campus.value
     }
     dispatch(createStudent(newStudentInfo))
   },

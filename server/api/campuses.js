@@ -30,17 +30,21 @@ api.put('/:campusId', (req, res, next) => {
   .then(() => res.send('successful'))
 })
 
-api.get('/:campusId/delete', (req, res, next) => {
-    Campus.destroy({
+api.delete('/:campusId/delete', (req, res, next) => {
+    Campus.findOne({
             where: {
                 id: req.params.campusId
             }
         })
-        .then(function () {
-            res.redirect('/campuses');
-        })
+        .then((result) => {
+          return Campus.destroy({
+            where: {
+              id: req.params.campusId
+            }
+          })
+          .then((u) => {res.send(result)})
         .catch(next);
-
-});
+      })
+      });
 
 module.exports = api
